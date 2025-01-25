@@ -32,6 +32,7 @@ public class InkReader : UsesInput
     private List<Button> _buttons = new();
 
     private string _lastSelectedWord;
+    [SerializeField] private float _wordReadoutDelay;
 
 
     void Awake()
@@ -76,8 +77,8 @@ public class InkReader : UsesInput
                 }
             }
             
-            yield return ReadoutWords(out var wordToTry);
-            Choice selectedChoice = ParseWordChoice(wordToTry);
+            yield return ReadoutWords();
+            Choice selectedChoice = ParseWordChoice(_lastSelectedWord);
             OnClickChoiceButton(selectedChoice);
         }
         
@@ -89,17 +90,17 @@ public class InkReader : UsesInput
         throw new NotImplementedException();
     }
 
-    private IEnumerator ReadoutWords(out string wordToTry)
+    private IEnumerator ReadoutWords()
     {
         _lastSelectedWord = "";
         while (_lastSelectedWord == "")
         {
-            while(_lastSelectedWord == "" && )
-            yield return new WaitForSeconds()
+            while (_lastSelectedWord == "")
+            {
+                yield return new WaitForSeconds(_wordReadoutDelay);
+            }
+                
         }
-        
-        wordToTry = _lastSelectedWord;
-        _lastSelectedWord = "";
     }
 
     private IEnumerator ReadoutLine(string text)
