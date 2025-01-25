@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private Transform _checkpoint;
+
     private InputMap _input;
     private InputAction _move;
     private Rigidbody2D _rb;
-    [SerializeField] private float _moveSpeed;
 
     private void Awake()
     {
@@ -30,6 +32,19 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+    }
+
+    public void Health_OnDied(object sender, EventArgs e)
+    {
+        _rb.MovePosition(_checkpoint.position);
+    }
+
+    public void LightDetector_OnLightSourceReached(object sender, Transform closestLightSourceTransform)
+    {
+        if (closestLightSourceTransform != _checkpoint)
+        {
+            _checkpoint = closestLightSourceTransform;
+        }
     }
 
     private void Move()

@@ -3,8 +3,18 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Collider2D _interactCollider;
+    [SerializeField] private Health _health;
+    [SerializeField] private PlayerController _playerController;
+    [SerializeField] private LightDetector _lightDetector;
     [SerializeField] private Inventory _inventory;
+    [SerializeField] private Collider2D _interactCollider;
+
+    private void Start()
+    {
+        _health.OnDied += _playerController.Health_OnDied;
+        _lightDetector.OnLightChecked += _health.LightDetector_OnLightChecked;
+        _lightDetector.OnLightSourceReached += _playerController.LightDetector_OnLightSourceReached;
+    }
 
     void Update()
     {
