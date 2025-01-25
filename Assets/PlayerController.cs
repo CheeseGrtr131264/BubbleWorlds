@@ -6,15 +6,27 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private InputMap _input;
+    private InputAction _move;
     private Rigidbody2D _rb;
     [SerializeField] private float _moveSpeed;
 
     private void Awake()
     {
         _input = new InputMap();
+        _move = _input.Player.Move;
         _rb = GetComponent<Rigidbody2D>();
     }
-    
+
+    private void OnEnable()
+    {
+        _input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _input.Disable();
+    }
+
     private void FixedUpdate()
     {
         Move();
@@ -22,13 +34,9 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector2 input = _input.Player.Move.ReadValue<Vector2>();
+        Vector2 input = _move.ReadValue<Vector2>();
         Vector2 moveSpeed = input.normalized * _moveSpeed;
-        Debug.Log(moveSpeed.ToString());
-        if (moveSpeed.magnitude > 0.05f)
-        {
-            return;
-        }
-        _rb.AddForce((Vector3)moveSpeed, ForceMode2D.Force);
+
+        _rb.linearVelocity = moveSpeed * Time.fixedDeltaTime;
     }
 }
