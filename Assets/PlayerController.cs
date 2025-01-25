@@ -1,16 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    private PlayerInput _playerController;
+    private InputMap _input;
     private Rigidbody2D _rb;
     [SerializeField] private float _moveSpeed;
 
     private void Awake()
     {
-        _playerController = new PlayerInput();
+        _input = new InputMap();
         _rb = GetComponent<Rigidbody2D>();
     }
     
@@ -21,13 +22,13 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector2 input = _playerController.Player.Move.ReadValue<Vector2>();
+        Vector2 input = _input.Player.Move.ReadValue<Vector2>();
         Vector2 moveSpeed = input.normalized * _moveSpeed;
+        Debug.Log(moveSpeed.ToString());
         if (moveSpeed.magnitude > 0.05f)
         {
             return;
         }
-        _rb.MovePosition(transform.position + (Vector3)moveSpeed);
-        Debug.Log();
+        _rb.AddForce((Vector3)moveSpeed, ForceMode2D.Force);
     }
 }
