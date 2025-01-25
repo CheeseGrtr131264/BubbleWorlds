@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
         // Get and interact with the closest Interactable that is inside _interactCollider
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            print("Spacebar pressed");
             IInteractable closestInteractable = null;
             float closestDistance = Mathf.Infinity;
 
@@ -19,7 +18,6 @@ public class Player : MonoBehaviour
             _interactCollider.Overlap(colliders);
             foreach (Collider2D collider in colliders)
             {
-                print(collider.name);
                 if (collider.gameObject.GetComponent<IInteractable>() != null)
                 {
                     IInteractable interactable = collider.gameObject.GetComponent<IInteractable>();

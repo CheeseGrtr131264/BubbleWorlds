@@ -29,16 +29,13 @@ public class DialogueHandler : MonoBehaviour
         // TEMP
         foreach (Word word in playerInventory.WordList)
         {
-            if(CheckIfWordIsKey(word.WordString))
-            {
-                AddWordToDialogueWordList(word);
-            }
+            TryAddWordToDialogueWordList(word);
         }
     }
 
-    private void AddWordToDialogueWordList(Word word)
+    private void TryAddWordToDialogueWordList(Word word)
     {
-        if(_dialogueWordList.Contains(word) == false)
+        if (_dialogueWordList.Contains(word) == false)
         {
             _dialogueWordList.Add(word);
             UpdateDialogueWordListUI();
@@ -62,13 +59,22 @@ public class DialogueHandler : MonoBehaviour
         }
         foreach (Word word in _dialogueWordList)
         {
-            //Test
-            print(_dialogueDictionary.GetValueOrDefault(word.WordString));
-
             GameObject wordUIGameObject = Instantiate(_wordUIPrefab, _dialogueWordUIGrid.transform);
             TMP_Text wordUIText = wordUIGameObject.GetComponent<WordUI>().TextMeshPro;
             wordUIText.text = word.WordString;
+            wordUIGameObject.GetComponent<Button>().onClick.AddListener(() => OnWordUIButtonPressed(word));
         }
+    }
+
+    private void OnWordUIButtonPressed(Word word)
+    {
+        if (CheckIfWordIsKey(word.WordString))
+        {
+            print(_dialogueDictionary.GetValueOrDefault(word.WordString));
+        }
+        //Do we want to just grey out the word when you talk to them?
+        RemoveWordFromDialogueWordList(word);
+
     }
 
     private bool CheckIfWordIsKey(string word)
