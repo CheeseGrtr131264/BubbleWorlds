@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.UI;
 
 public class DialogueHandler : MonoBehaviour
 {
@@ -8,9 +10,15 @@ public class DialogueHandler : MonoBehaviour
 
     [SerializeField] private Dictionary<string, string> _dialogueDictionary = new Dictionary<string, string>();
     [SerializeField] private List<Word> _dialogueWordList = new List<Word>();
+    [SerializeField] private DialogueWordUI _dialogueWordUI;
+    [SerializeField] private GameObject _wordUIPrefab;
+
+    private GridLayoutGroup _dialogueWordUIGrid;
     
     void Awake()
     {
+        _dialogueWordUIGrid = _dialogueWordUI.Canvas.GetComponent<GridLayoutGroup>();
+
         //TODO load excel data and put keys and values into dictionary
         _dialogueDictionary.Add(TestString, "Yes I recognize 'Hello'");
         _dialogueDictionary.Add(SecondTestString, "Yes I recognize 'Goodbye'");
@@ -30,8 +38,11 @@ public class DialogueHandler : MonoBehaviour
 
     private void AddWordToDialogueWordList(Word word)
     {
-        _dialogueWordList.Add(word);
-        UpdateDialogueWordListUI();
+        if(_dialogueWordList.Contains(word) == false)
+        {
+            _dialogueWordList.Add(word);
+            UpdateDialogueWordListUI();
+        }
     }
 
     private void RemoveWordFromDialogueWordList(Word word)
@@ -42,10 +53,21 @@ public class DialogueHandler : MonoBehaviour
 
     private void UpdateDialogueWordListUI()
     {
-        foreach(Word word in _dialogueWordList)
+        if (_dialogueWordUIGrid.transform.childCount >= 0)
+        {
+            foreach (Transform child in _dialogueWordUIGrid.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        foreach (Word word in _dialogueWordList)
         {
             //Test
             print(_dialogueDictionary.GetValueOrDefault(word.WordString));
+
+            GameObject wordUIGameObject = Instantiate(_wordUIPrefab, _dialogueWordUIGrid.transform);
+            TMP_Text wordUIText = wordUIGameObject.GetComponent<WordUI>().TextMeshPro;
+            wordUIText.text = word.WordString;
         }
     }
 
