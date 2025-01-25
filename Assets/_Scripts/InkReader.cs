@@ -1,0 +1,197 @@
+using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using Ink.Runtime;
+using TMPro;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
+
+public class InkReader : UsesInput
+{
+    public static event Action<Story> OnCreateStory;
+
+    [SerializeField] private TextAsset inkJSONAsset = null;
+    public Story story;
+
+    [SerializeField] private Canvas canvas = null;
+
+    // UI Prefabs
+    [SerializeField] private TMP_Text _textReadout;
+
+    [SerializeField] private bool _doneWithStory;
+
+    [SerializeField] private float _letterDelay;
+
+    private InputAction _proceed;
+
+    [SerializeField] private float _dotDelay;
+    [SerializeField] private Button buttonPrefab;
+    private List<Button> _buttons = new();
+
+    private string _lastSelectedWord;
+
+
+    void Awake()
+    {
+        _proceed = _input.Player.Next;
+        ClearView();
+        StartStory();
+    }
+
+    // Creates a new Story object with the compiled story which we can then play!
+    void StartStory()
+    {
+        story = new Story(inkJSONAsset.text);
+        if (OnCreateStory != null) OnCreateStory(story);
+        
+        StartCoroutine(PlayStory());
+    }
+
+    // This is the main function called every time the story changes. It does a few things:
+    // Destroys all the old content and choices.
+    // Continues over all the lines of text, then displays all the choices. If there are no choices, the story is finished!
+    IEnumerator PlayStory()
+    {
+        while (!_doneWithStory)
+        {
+            // Remove all the UI on screen
+            ClearView();
+            
+            // Read all the content until we can't continue any more
+            while (story.canContinue)
+            {
+                // Continue gets the next line of the story
+                string text = story.Continue();
+                // This removes any white space from the text.
+                text = text.Trim();
+                // Display the text on screen!
+                yield return ReadoutLine(text);
+
+                if (story.canContinue)
+                {
+                    yield return ShowDots();
+                }
+            }
+            
+            yield return ReadoutWords(out var wordToTry);
+            Choice selectedChoice = ParseWordChoice(wordToTry);
+            OnClickChoiceButton(selectedChoice);
+        }
+        
+        
+    }
+
+    private Choice ParseWordChoice(string wordToTry)
+    {
+        throw new NotImplementedException();
+    }
+
+    private IEnumerator ReadoutWords(out string wordToTry)
+    {
+        _lastSelectedWord = "";
+        while (_lastSelectedWord == "")
+        {
+            while(_lastSelectedWord == "" && )
+            yield return new WaitForSeconds()
+        }
+        
+        wordToTry = _lastSelectedWord;
+        _lastSelectedWord = "";
+    }
+
+    private IEnumerator ReadoutLine(string text)
+    {
+        char[] letters = text.ToCharArray();
+        int i = 0;
+
+        while (i < letters.Length)
+        {
+            //Check if user is trying to skip forward
+            if (_proceed.ReadValue<bool>())
+            {
+                break;
+            }
+            
+            //Maybe add anim here
+            _textReadout.text += letters[i];
+            yield return new WaitForSeconds(_letterDelay);
+        }
+        
+        for (int remainingLetters = i; remainingLetters < letters.Length; remainingLetters++)
+        {
+            _textReadout.text += letters[remainingLetters];
+        }
+    }
+
+    private IEnumerator ShowDots()
+    {
+        //Add new lines
+        _textReadout.text += "\n\n";
+        
+        //Show 3 dots
+        int dotCount = 0;
+        while (dotCount < 3)
+        {
+            _textReadout.text += ". ";
+            yield return new WaitForSeconds(_dotDelay);
+            dotCount++;
+        }
+        
+        //Wait for proceed input
+        while (true)
+        {
+            if (_proceed.ReadValue<bool>())
+            {
+                break;
+            }
+            yield return null;
+        }
+        
+    }
+
+
+    // When we click the choice button, tell the story to choose that choice!
+    void OnClickChoiceButton (Choice choice) {
+        story.ChooseChoiceIndex (choice.index);
+    }
+
+    // Creates a textbox showing the the line of text
+    void AddText(string text)
+    {
+        _textReadout.text += text + "\n";
+    }
+
+    // Creates a button showing the choice text
+    Button CreateChoiceView(string text)
+    {
+        // Creates the button from a prefab
+        Button choice = Instantiate(buttonPrefab, canvas.transform, false);
+        _buttons.Add(choice);
+
+        // Gets the text from the button prefab
+        Text choiceText = choice.GetComponentInChildren<Text>();
+        choiceText.text = text;
+
+        // Make the button expand to fit the text
+        HorizontalLayoutGroup layoutGroup = choice.GetComponent<HorizontalLayoutGroup>();
+        layoutGroup.childForceExpandHeight = false;
+
+        return choice;
+    }
+    
+    /// <summary>
+    /// Clears story view by erasing text and destroying buttons
+    /// </summary>
+    void ClearView()
+    {
+        _textReadout.text = "";
+        foreach (var button in _buttons)
+        {
+            Destroy(button.gameObject);
+        }
+        _buttons.Clear();
+    }
+}
