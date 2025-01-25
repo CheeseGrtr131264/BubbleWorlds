@@ -8,84 +8,110 @@ public class DialogueHandler : MonoBehaviour
     public string TestString;
     public string SecondTestString;
 
-    [SerializeField] private Dictionary<string, string> _dialogueDictionary = new Dictionary<string, string>();
-    [SerializeField] private List<Word> _dialogueWordList = new List<Word>();
     [SerializeField] private DialogueWordUI _dialogueWordUI;
     [SerializeField] private GameObject _wordUIPrefab;
 
+    private Dictionary<string, List<string>> _dialogueDictionary = new Dictionary<string, List<string>>();
     private GridLayoutGroup _dialogueWordUIGrid;
+    private Inventory _playerInventory;
+    private List<Word> _failedAttemptWordList = new List<Word>();
     
     void Awake()
     {
         _dialogueWordUIGrid = _dialogueWordUI.Canvas.GetComponent<GridLayoutGroup>();
 
         //TODO load excel data and put keys and values into dictionary
-        _dialogueDictionary.Add(TestString, "Yes I recognize 'Hello'");
-        _dialogueDictionary.Add(SecondTestString, "Yes I recognize 'Goodbye'");
+        _dialogueDictionary.Add(TestString, new List<string>() { "Yes I recognize 'Hello'" });
+        _dialogueDictionary.Add(SecondTestString, new List<string>() { "Yes I recognize 'Goodbye'", "Yes I also recognize 'Goodbye'" });
     }
 
     public void StartDialogue(Inventory playerInventory)
     {
-        // TEMP
-        foreach (Word word in playerInventory.WordList)
-        {
-            TryAddWordToDialogueWordList(word);
-        }
-    }
+        ClearDialogueWordUIGrid();
 
-    private void TryAddWordToDialogueWordList(Word word)
-    {
-        if (_dialogueWordList.Contains(word) == false)
+        _playerInventory = playerInventory;
+        foreach (Word word in _playerInventory.WordList)
         {
-            _dialogueWordList.Add(word);
-            UpdateDialogueWordListUI();
-        }
-    }
-
-    private void RemoveWordFromDialogueWordList(Word word)
-    {
-        _dialogueWordList.Remove(word);
-        UpdateDialogueWordListUI();
-    }
-
-    private void UpdateDialogueWordListUI()
-    {
-        if (_dialogueWordUIGrid.transform.childCount >= 0)
-        {
-            foreach (Transform child in _dialogueWordUIGrid.transform)
+            if (_failedAttemptWordList.Contains(word) == false)
             {
-                Destroy(child.gameObject);
+                AddWordToDialogueWordUI(word);
             }
         }
-        foreach (Word word in _dialogueWordList)
+    }
+
+    private void AddWordToDialogueWordUI(Word word)
+    {
+        GameObject wordUIGameObject = Instantiate(_wordUIPrefab, _dialogueWordUIGrid.transform);
+        TMP_Text wordUIText = wordUIGameObject.GetComponent<WordUI>().TextMeshPro;
+        wordUIText.text = word.WordString;
+
+        if (_dialogueDictionary.ContainsKey(word.WordString) == true)
         {
-            GameObject wordUIGameObject = Instantiate(_wordUIPrefab, _dialogueWordUIGrid.transform);
-            TMP_Text wordUIText = wordUIGameObject.GetComponent<WordUI>().TextMeshPro;
-            wordUIText.text = word.WordString;
-            wordUIGameObject.GetComponent<Button>().onClick.AddListener(() => OnWordUIButtonPressed(word));
+            if (CheckIfAllValuesRemovedFromKey(word))
+            {
+                //make the dialogue word UI button unable to interact
+                wordUIGameObject.GetComponent<Button>().interactable = false;
+            }
         }
+        wordUIGameObject.GetComponent<Button>().onClick.AddListener(() => OnWordUIButtonPressed(word));
+    }
+
+    private void RefreshDialogueWordUIGrid()
+    {
+        ClearDialogueWordUIGrid();
+
+        foreach (Word word in _playerInventory.WordList)
+        {
+            if (_failedAttemptWordList.Contains(word) == false)
+            {
+                AddWordToDialogueWordUI(word);
+            }
+        }
+    }
+
+    private void ClearDialogueWordUIGrid()
+    {
+        for (var i = _dialogueWordUIGrid.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(_dialogueWordUIGrid.transform.GetChild(i).gameObject);
+        }
+    }
+
+    private bool CheckIfAllValuesRemovedFromKey(Word word)
+    {
+        if (_dialogueDictionary.GetValueOrDefault(word.WordString).Count <= 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void OnWordUIButtonPressed(Word word)
     {
-        if (CheckIfWordIsKey(word.WordString))
+        if (CheckIfWordIsKey(word))
         {
-            print(_dialogueDictionary.GetValueOrDefault(word.WordString));
-        }
-        //Do we want to just grey out the word when you talk to them?
-        RemoveWordFromDialogueWordList(word);
+            //TODO Send the word to Ink?
+            print(_dialogueDictionary.GetValueOrDefault(word.WordString)[0]);
 
+            //Remove that response value from dictionary
+            _dialogueDictionary.GetValueOrDefault(word.WordString).RemoveAt(0);
+
+            //refresh UI
+            RefreshDialogueWordUIGrid();
+        }
     }
 
-    private bool CheckIfWordIsKey(string word)
+    private bool CheckIfWordIsKey(Word word)
     {
-        if (_dialogueDictionary.ContainsKey(word))
+        if (_dialogueDictionary.ContainsKey(word.WordString))
         {
             return true;
         }
         else
         {
             print("NPC's DialogueHandler does not have " + word);
+            _failedAttemptWordList.Add(word);
+            RefreshDialogueWordUIGrid();
             return false;
         }
     }
