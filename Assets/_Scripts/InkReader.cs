@@ -8,6 +8,7 @@ using Ink.Runtime;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 
 public class InkReader : UsesInput
@@ -47,6 +48,12 @@ public class InkReader : UsesInput
     [SerializeField] private Transform _buttonSpawnCanvas;
     private Inventory _inventory;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip audioDialogueClip;
+    [SerializeField] private AudioMixerGroup audioMixerGroupSFX;
+
+    private AudioSource audioSource;
+
 
     protected override void Awake()
     {
@@ -54,6 +61,8 @@ public class InkReader : UsesInput
         base.Awake();
         _proceed = new SmartButton(_input.Player.ProceedDialogue);
         _smartButtonInputs.Add(_proceed);
+        audioSource = this.gameObject.AddComponent<AudioSource>();
+        audioSource.outputAudioMixerGroup = audioMixerGroupSFX;
         // ClearView();
         // StartStory();
     }
@@ -252,6 +261,7 @@ public class InkReader : UsesInput
     {
         //_textReadout.text = _textReadout.text.Substring(0, index) + text +_textReadout.text.Substring(index + text.Length);
         _textReadout.text += text;
+        audioSource.Play();
         // foreach (var btn in _wordButtons)
         // {
         //     btn.UpdatePos();

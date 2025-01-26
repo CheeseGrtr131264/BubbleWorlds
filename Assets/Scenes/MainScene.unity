@@ -1057,9 +1057,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4176186584738095530, guid: 92e1d8725281aad4eabd6264021af955, type: 3}
     - target: {fileID: 869819000906982455, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
+      propertyPath: audioDialogueClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 83852257508d64d3789bd12fd79b7dbc, type: 3}
+    - target: {fileID: 869819000906982455, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
       propertyPath: _buttonSpawnCanvas
       value: 
       objectReference: {fileID: 639771829}
+    - target: {fileID: 869819000906982455, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
+      propertyPath: audioMixerGroupSFX
+      value: 
+      objectReference: {fileID: 5108784107403787981, guid: 5159f382665b84410b2c4afe3899c96d, type: 2}
     - target: {fileID: 1375587811912809152, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
