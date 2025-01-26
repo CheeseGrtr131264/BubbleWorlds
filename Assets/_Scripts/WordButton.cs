@@ -31,7 +31,7 @@ public class WordButton : MonoBehaviour
 		_text.text = "";
 		
 		//IF already clicked, disable on start
-		if (inventory.HasWord(_myWord))
+		if (inventory.HasWord(new Word(name)))
 		{
 			GetComponent<Button>().interactable = false;
 		}
