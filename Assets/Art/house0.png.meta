@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7dcf84d89645040e6871f2748d645c1c
+guid: 005137756c28d427c81cad02fae0cae2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: child_0
+      name: house_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 24
-        width: 16
-        height: 24
+        y: 0
+        width: 96
+        height: 160
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,72 +127,6 @@ TextureImporter:
       bones: []
       spriteID: 3ae467cd947413eb0800000000000000
       internalID: -4741930550087496029
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: child_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 24
-        width: 16
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c84f9f66660ab34f848d0510891abce
-      internalID: 1374446363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: child_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7c5c1410fe6c3449b713bf876eaa16a
-      internalID: 2131988629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: child_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d3d3c91cc8bb5b14da553f5edceaf4a4
-      internalID: 1688919233
       vertices: []
       indices: 
       edges: []
@@ -211,10 +145,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      child_0: -4741930550087496029
       child_1: 1374446363
       child_2: 2131988629
       child_3: 1688919233
+      house_0: -4741930550087496029
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

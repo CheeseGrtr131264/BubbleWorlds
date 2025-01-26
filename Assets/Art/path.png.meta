@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 984ad9b1fa5304abcb32827551a5b452
+guid: 259022926b4694be59444887bd5914e0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,11 +110,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lake_0
+      name: path_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -125,18 +125,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff2776ed4886d4f13a66fcdcc99de106
-      internalID: 1943646996
+      spriteID: f3810325e34aa42c9b041f65ca413813
+      internalID: -1791673476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lake_1
+      name: path_1
       rect:
         serializedVersion: 2
         x: 16
-        y: 48
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -147,18 +147,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eedf4a2a6a52c4487bbf6d5470159bea
-      internalID: -662223076
+      spriteID: 98598ad22c5ca4fb092f9198ca26035a
+      internalID: -331112269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lake_2
+      name: path_2
       rect:
         serializedVersion: 2
         x: 32
-        y: 48
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -169,39 +169,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35fef0a21049c469f94dd8c5c20cff4d
-      internalID: 13383297
+      spriteID: b7cc12c194a6f449b80fdff8fd7a9b64
+      internalID: 1264096046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lake_3
+      name: path_3
       rect:
         serializedVersion: 2
         x: 48
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b904255fbb08941679df19af957da8e8
-      internalID: 681318398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lake_4
-      rect:
-        serializedVersion: 2
-        x: 0
         y: 32
         width: 16
         height: 16
@@ -213,58 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 308abc35b30814586840041a85ec968b
-      internalID: 50845498
+      spriteID: 8395731097b0448a4a0a1d18ebf59b6a
+      internalID: 875330891
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lake_5
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e13223ec8da4f4e1089c28f709faf78f
-      internalID: 866761246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lake_6
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72912fb6e927c436a874344d3cee220e
-      internalID: -1662087956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lake_7
+      name: path_4
       rect:
         serializedVersion: 2
         x: 0
@@ -279,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae811501fa78f452ba25c51afaf90eb5
-      internalID: -718491275
+      spriteID: 1c46ae78b6d1f4730b11c461a7af1d8c
+      internalID: 518867132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lake_8
+      name: path_5
       rect:
         serializedVersion: 2
         x: 16
@@ -301,14 +235,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cecf50e6d31a849d58cb33865ae3526b
-      internalID: -1116489843
+      spriteID: cf0a6e1684edb4494b79a1cf5d2150d5
+      internalID: 1449870805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lake_9
+      name: path_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ef887856d9d04499bcb2524c85c9388
+      internalID: 1212063777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: path_7
       rect:
         serializedVersion: 2
         x: 0
@@ -323,14 +279,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb2ad2048bcbe4021b0761d686b7004b
-      internalID: -1836381149
+      spriteID: ad8fb189bd9844558a4be8a3c92fd611
+      internalID: 637688933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lake_10
+      name: path_8
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ac94ee47ab4d4d2cad7d72007bd1016
+      internalID: -831014925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: path_9
       rect:
         serializedVersion: 2
         x: 32
@@ -345,30 +323,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b14390c8845ac4c1cb5f51960b1b351b
-      internalID: 446444699
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lake_11
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c1e7453caedab4e57942bc9accc246ad
-      internalID: 1437716937
+      spriteID: b9d747b8c470e410ea5b7b8cf5570467
+      internalID: 1449937882
       vertices: []
       indices: 
       edges: []
@@ -387,18 +343,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lake_0: 1943646996
-      lake_1: -662223076
-      lake_10: 446444699
-      lake_11: 1437716937
-      lake_2: 13383297
-      lake_3: 681318398
-      lake_4: 50845498
-      lake_5: 866761246
-      lake_6: -1662087956
-      lake_7: -718491275
-      lake_8: -1116489843
-      lake_9: -1836381149
+      path_0: -1791673476
+      path_1: -331112269
+      path_2: 1264096046
+      path_3: 875330891
+      path_4: 518867132
+      path_5: 1449870805
+      path_6: 1212063777
+      path_7: 637688933
+      path_8: -831014925
+      path_9: 1449937882
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -160,5 +160,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1646467fb58e484287567c44b6f15c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inkFile: {fileID: 4900000, guid: bdccc35909c005046a6b4ac1d5ad4e7c, type: 3}
+  _inkFile: {fileID: 4900000, guid: 54db7cb5345d00a4fbeeab4115479c44, type: 3}
   _hasRunDialogue: 0
