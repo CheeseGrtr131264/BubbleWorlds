@@ -31,7 +31,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cat
+  m_Name: Child
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -54,7 +54,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cat_Idle
+  m_Name: Child_Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -67,7 +67,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2b434140fea7aac4fadc4339952e054b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 21fb5eaf658f64a248cef6ec0353ce59, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -80,7 +80,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cat_Move
+  m_Name: Child_Move
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -93,7 +93,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 56654cd7d9eea334e9fb9d4da283e474, type: 2}
+  m_Motion: {fileID: 7400000, guid: 250b63bcd2dc945dd96c82de14ed4abd, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

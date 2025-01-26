@@ -3,30 +3,48 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : UsesInput
+public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private Transform _checkpoint;
+
+    private InputMap _input;
     private InputAction _move;
     private Rigidbody2D _rb;
-    [SerializeField] private float _moveSpeed;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
+        _input = new InputMap();
         _move = _input.Player.Move;
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    protected override void OnDisable()
+    private void OnEnable()
     {
-        base.OnDisable();
-        _rb.linearVelocity = Vector2.zero;
+        _input.Enable();
     }
-    
-    
+
+    private void OnDisable()
+    {
+        _input.Disable();
+    }
 
     private void FixedUpdate()
     {
         Move();
+    }
+
+    public void Health_OnDied(object sender, EventArgs e)
+    {
+        _rb.MovePosition(_checkpoint.position);
+    }
+
+    public void LightDetector_OnLightSourceReached(object sender, Transform closestLightSourceTransform)
+    {
+        if (closestLightSourceTransform != _checkpoint)
+        {
+            _checkpoint = closestLightSourceTransform;
+        }
     }
 
     private void Move()
