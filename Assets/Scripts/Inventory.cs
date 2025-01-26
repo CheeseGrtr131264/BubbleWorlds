@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Ink.Runtime;
+using UnityEngine.Events;
 
 public class Inventory : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Inventory : MonoBehaviour
     public List<Word> WordList = new List<Word>();
 
     private Dictionary<Story, List<WordInfo>> _npcData;
+    public UnityEvent OnWordAdded;
 
     private void Awake()
     {
@@ -42,7 +44,7 @@ public class Inventory : MonoBehaviour
         }
         
         WordList.Add(word);
-        
+        OnWordAdded.Invoke();
         //Add it to all npc's
         foreach (var npc in _npcData)
         {

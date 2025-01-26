@@ -76,7 +76,7 @@ I haven't been [sick] in a while.
 
 ==Frosty==
 Delicious!
-{Frosty == 1} ~ x = x + scoreA
+~ UpdateScore(Frosty == 1, scoreA)
 ->->
 
 ==Stars==
@@ -98,7 +98,7 @@ Creepy!
 ==Astronomer==
 That's right! I wanna be an astronomer! ...How'd I remember that? 
 Did Ms. Suzie help me with my [learning]?
-{Edith == 1} ~ x = x + scoreD
+~ UpdateScore(Edith == 1, scoreD)
 ->->
 
 ==Cynthia==
@@ -124,7 +124,7 @@ They're shiny.
 
 ==Paul==
 P...a...u...l......! I did it!
-{Paul == 1} ~ x = x + scoreC
+~ UpdateScore(Paul == 1, scoreC)
 ->->
 
 ==Grace==
@@ -145,7 +145,7 @@ She gives me [cookies] when I can get away into the forest!
 
 ==Cookies==
 Absolutely delicious!
-{Cookies == 1} ~ x = x + scoreA
+~ UpdateScore(Cookies == 1, scoreA)
 ->->
 
 ==Fish==
@@ -166,3 +166,8 @@ Yeah, my dad isn't so good at that.
 
 ==FinalDialogue==
     ->DONE
+    
+=== function UpdateScore(a,  b) ===
+{ a:
+    ~ x = x + b
+}
