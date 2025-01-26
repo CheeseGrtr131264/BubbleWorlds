@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 public class SwitchAudioMixerState : MonoBehaviour
 {
 	public AudioMixerSnapshot mySnapshot;
-	public AUdioMixerSnapshot baseSnapshot;
+	public AudioMixerSnapshot baseSnapshot;
 	public float fadeTime = 3.0f;
 	public float delayTime = 0.0f;
 	public GameObject player;
