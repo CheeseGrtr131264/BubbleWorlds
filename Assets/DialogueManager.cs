@@ -12,9 +12,14 @@ public class DialogueManager : MonoSingleton<DialogueManager>
         _dialog = GetComponent<Dialog>();
     }
 
-    public void StartDialogue(Inventory inventory, Story text)
+    public void StartDialogue(Inventory inventory, Story text, Sprite characterSprite)
     {
-        _dialog.StartDialogue(inventory, text);
+        _dialog.StartDialogue(inventory, text, characterSprite);
+    }
+
+    public void EndDialogue()
+    {
+        _dialog.LeaveDialogue();
     }
 
     public void AddListener(Action action)

@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WordTest
       objectReference: {fileID: 0}
+    - target: {fileID: 1720547428630655358, guid: 1ea0938b80a5c41baa1ed65a30ad76f8, type: 3}
+      propertyPath: WordString
+      value: Frosty
+      objectReference: {fileID: 0}
     - target: {fileID: 1845816860361294753, guid: 1ea0938b80a5c41baa1ed65a30ad76f8, type: 3}
       propertyPath: WordString
       value: Diamonds

@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using DG.Tweening;
 using Ink.Runtime;
@@ -47,6 +48,7 @@ public class InkReader : UsesInput
     public Action<WordButton> OnButtonAdded;
     [SerializeField] private float _newWordDelay;
     [SerializeField] private Transform _buttonSpawnCanvas;
+    private Inventory _inventory;
 
 
     protected override void Awake()
@@ -59,9 +61,10 @@ public class InkReader : UsesInput
         // StartStory();
     }
     
-    public void Setup(Story story)
+    public void Setup(Inventory inventory, Story story)
     {
         _story = story;
+        _inventory = inventory;
         ShowReadout();
         StartStory();
     }
@@ -118,7 +121,6 @@ public class InkReader : UsesInput
         // Read all the content until we can't continue any more
         while (_story.canContinue)
         {
-            var cont = _story.KnotContainerWithName("Somethin");
             yield return null;
             ClearView();
             // Continue gets the next line of the story
@@ -136,6 +138,7 @@ public class InkReader : UsesInput
             if (_story.canContinue)
             {
                 yield return ShowDots();
+                
             }
         }
         
@@ -164,52 +167,70 @@ public class InkReader : UsesInput
     {
         char[] letters = text.ToCharArray();
         int i = 0;
+        bool _makingButton = false;
 
-        StringBuilder sb = new StringBuilder();
-        for (int counter = 0; counter < text.Length; counter++)
-        {
-            sb.Append(" ");
-        }
-
-        _textReadout.text = sb.ToString();
+        // StringBuilder sb = new StringBuilder();
+        // for (int counter = 0; counter < text.Length; counter++)
+        // {
+        //     sb.Append(" ");
+        // }
+        //
+        // _textReadout.text = sb.ToString();
         
         while (i < letters.Length)
         {
             //Check if user is trying to skip forward
             if (_proceed.Value())
             {
-                Debug.Log("Breaking rn");
-                break;
+                //Don't let them skip if there's a word left lol
+                if (text.IndexOf('[', i) == -1)
+                {
+                    Debug.Log("Breaking rn");
+                    break;
+                }
             }
 
             if (letters[i] == '[')
             {
+                _makingButton = true;
                 int firstLetter = i;
                 int lastLetter = text.IndexOf(']', i) - 1;
                 
                 string word = text.Substring(firstLetter + 1, lastLetter - firstLetter);
-                AddToText(word, firstLetter);
                 yield return null;
-                var firstCharInfo = _textReadout.textInfo.characterInfo[firstLetter];
-                var lastCharInfo = _textReadout.textInfo.characterInfo[lastLetter];
-                var wordLocation = _textReadout.transform.TransformPoint((firstCharInfo.topLeft + lastCharInfo.bottomRight) / 2f);
-                var topLeft = _textReadout.transform.TransformPoint(firstCharInfo.topLeft);
-                var bottomRight = _textReadout.transform.TransformPoint(lastCharInfo.bottomRight);
+                
+                //var wordLocation = _textReadout.transform.TransformPoint((firstCharInfo.topLeft + lastCharInfo.bottomRight) / 2f);
+                // var topLeft = _textReadout.transform.TransformPoint(firstCharInfo.topLeft);
+                // var bottomRight = _textReadout.transform.TransformPoint(lastCharInfo.bottomRight);
+                
                 WordButton newWordButton = Instantiate(_wordButtonPrefab, _buttonSpawnCanvas);
-                newWordButton.transform.position = wordLocation;//wordLocation, Quaternion.identity);
-                newWordButton.Setup(new Vector2(Mathf.Abs(topLeft.x - bottomRight.x), Mathf.Abs(topLeft.y - bottomRight.y)), word);
+                //newWordButton.transform.position = wordLocation;//wordLocation, Quaternion.identity);
+                newWordButton.Setup(firstLetter, lastLetter, _textReadout, word, _inventory);
                 _wordButtons.Add(newWordButton);
                 OnButtonAdded?.Invoke(newWordButton);
-                yield return new WaitForSeconds(_newWordDelay);
-                i = lastLetter + 2;
+                i++;
+            }
+            else if (_makingButton)
+            {
+                if (letters[i] == ']')
+                {
+                    _makingButton = false;
+                }
+                else
+                {
+                    var letter = letters[i].ToString();
+                    _wordButtons.Last().AppendText(letter);
+                    AddToText(letter, i);
+                }
+                i++;
             }
             else
             {
                 //Maybe add anim here
                 AddToText(letters[i].ToString(), i);
                 i++;
-                yield return new WaitForSeconds(_letterDelay);
             }
+            yield return new WaitForSeconds(_letterDelay);
         }
 
         if (i < letters.Length)
@@ -231,8 +252,12 @@ public class InkReader : UsesInput
 
     private void AddToText(string text, int index)
     {
-        _textReadout.text = _textReadout.text.Substring(0, index) + text +_textReadout.text.Substring(index + text.Length);
-        
+        //_textReadout.text = _textReadout.text.Substring(0, index) + text +_textReadout.text.Substring(index + text.Length);
+        _textReadout.text += text;
+        // foreach (var btn in _wordButtons)
+        // {
+        //     btn.UpdatePos();
+        // }
     }
     private IEnumerator ShowDots()
     {

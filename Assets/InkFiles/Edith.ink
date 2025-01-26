@@ -62,7 +62,8 @@ Hello, my dear. Oh yes, I can see you; I do make the [candles], you know.
 -> Fish -> Loop
 + Prrrrrrr
 -> Prrrrrrr -> Loop
-
++Default
+-> Default -> Loop
 
 +Leave
 -> FinalDialogue

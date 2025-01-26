@@ -8,6 +8,7 @@ public class NPC : MonoBehaviour, IInteractable
     //[SerializeField] Dialog _dialogueHandler;
     [SerializeField] private TextAsset _inkFile;
     [SerializeField] private bool _hasRunDialogue;
+    [SerializeField] private Sprite _characterSprite;
 
     private Story _myStory;
     public Story MyStory => _myStory;
@@ -19,7 +20,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     void IInteractable.Interact(Inventory playerInventory)
     {
-        DialogueManager.Instance.StartDialogue(playerInventory, _myStory);
+        DialogueManager.Instance.StartDialogue(playerInventory, _myStory, _characterSprite);
         DialogueManager.Instance.AddListener(DialogueDone);
         _hasRunDialogue = true;
     }

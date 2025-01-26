@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using Ink.Runtime;
 
 public class Inventory : MonoBehaviour
 {
-    public List<Word> DebugWordList = new List<Word>();
+    public List<WordMono> DebugWordList = new List<WordMono>();
     public List<Word> WordList = new List<Word>();
 
     private Dictionary<Story, List<WordInfo>> _npcData;
@@ -25,12 +26,22 @@ public class Inventory : MonoBehaviour
         
         foreach (var word in DebugWordList)
         {
-            AddWord(word);
+            AddWord(word.MyWord);
         }
     }
 
+    public bool HasWord(Word word)
+    {
+        return WordList.Any(word1 => word1 == word);
+    }
     public void AddWord(Word word)
     {
+        //Ensure no duplicates
+        if (HasWord(word))
+        {
+            return;
+        }
+        
         WordList.Add(word);
         
         //Add it to all npc's

@@ -14,6 +14,7 @@ public class Dialog : UsesInput
     
     [SerializeField] private InkReader _inkReader;
     [SerializeField] private InventoryManager _inventoryManager;
+    [SerializeField] private Image _image;
 
     private Dictionary<string, List<string>> _dialogueDictionary = new Dictionary<string, List<string>>();
     private Inventory _playerInventory;
@@ -34,7 +35,16 @@ public class Dialog : UsesInput
     {
         base.OnEnable();
         _inkReader.OnDoneReadout.AddListener(OpenInventory);
+        _inkReader.OnButtonAdded += SubscribeToButton;
         _inventoryManager.OnChoiceSelected.AddListener(ContinueStory);
+    }
+
+    private void SubscribeToButton(WordButton obj)
+    {
+        obj.OnButtonClicked.AddListener((fort) => {
+            _playerInventory.AddWord(fort);
+            _inventoryManager.AddWordToDialogueWordUI(fort);
+        });
     }
 
     protected override void Update()
@@ -69,13 +79,14 @@ public class Dialog : UsesInput
         _inventoryManager.OpenInventory();
     }
 
-    public void StartDialogue(Inventory playerInventory, Story ink)
+    public void StartDialogue(Inventory playerInventory, Story ink, Sprite characterSprite)
     {
         _playerInventory = playerInventory;
         var currentStory = ink;
         
         _inventoryManager.Setup(playerInventory, currentStory);
-        _inkReader.Setup(currentStory);
+        _inkReader.Setup(playerInventory, currentStory);
+        _image.sprite = characterSprite;
     }
 
     public void LeaveDialogue()

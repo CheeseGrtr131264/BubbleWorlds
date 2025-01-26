@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private float _shownY;
     [SerializeField] private float _hiddenY;
     [SerializeField] private float _lerpTime;
-    [SerializeField] private Word _defaultWord;
+    [SerializeField] private WordMono _defaultWord;
 
     public UnityEvent OnChoiceSelected;
     
@@ -44,7 +44,7 @@ public class InventoryManager : MonoBehaviour
         _rect.DOAnchorPosY(_hiddenY, _lerpTime);
     }
     
-    private void AddWordToDialogueWordUI(Word word)
+    public void AddWordToDialogueWordUI(Word word)
     {
         WordUI wordUI = Instantiate(_wordUIPrefab, _wordButtonParent);
         wordUI.Text = word.WordString;
@@ -89,6 +89,11 @@ public class InventoryManager : MonoBehaviour
 
     private void OnWordUIButtonPressed(Word word)
     {
+        if (word.WordString == "leave")
+        {
+            DialogueManager.Instance.EndDialogue();
+            return;
+        }
         int choice = GetWordKey(word);
         _currentStory.ChooseChoiceIndex(choice);
         OnChoiceSelected.Invoke();
@@ -99,10 +104,10 @@ public class InventoryManager : MonoBehaviour
 
     private int GetWordKey(Word word)
     {
-        int choiceIndex = _currentStory.currentChoices.FindIndex((choice => choice.text == word.WordString));
+        int choiceIndex = _currentStory.currentChoices.FindIndex((choice => choice.text.ToLower() == word.WordString));
         if (choiceIndex == -1)
         {
-            return GetWordKey(_defaultWord);
+            return GetWordKey(_defaultWord.MyWord);
         }
         
         return choiceIndex;

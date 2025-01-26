@@ -64,7 +64,8 @@ This one's [bubble]gum flavor!
 -> Fish -> Loop
 + Prrrrrrr
 -> Prrrrrrr -> Loop
-
++Default
+-> Default -> Loop
 
 +Leave
 -> FinalDialogue

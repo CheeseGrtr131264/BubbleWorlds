@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2415752447401756026
+--- !u!1001 &5897236189552488294
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 654728575901779532, guid: 1ea0938b80a5c41baa1ed65a30ad76f8, type: 3}
       propertyPath: m_Name
-      value: WordGoodbye
+      value: DefaultWord
       objectReference: {fileID: 0}
     - target: {fileID: 1720547428630655358, guid: 1ea0938b80a5c41baa1ed65a30ad76f8, type: 3}
       propertyPath: WordString
-      value: Cynthia
+      value: Default
       objectReference: {fileID: 0}
     - target: {fileID: 1845816860361294753, guid: 1ea0938b80a5c41baa1ed65a30ad76f8, type: 3}
       propertyPath: WordString
-      value: Cynthia
+      value: Default
       objectReference: {fileID: 0}
     - target: {fileID: 4926139614563350905, guid: 1ea0938b80a5c41baa1ed65a30ad76f8, type: 3}
       propertyPath: m_LocalPosition.x

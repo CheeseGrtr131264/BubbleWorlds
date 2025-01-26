@@ -65,7 +65,8 @@ The [stars] are so bright. I wish she could see them.
 -> Fish -> Loop
 + Prrrrrrr
 -> Prrrrrrr -> Loop
-
++Default
+-> Default -> Loop
 +Leave
 -> FinalDialogue
 
