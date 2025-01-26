@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1845816860361294753, guid: 1ea0938b80a5c41baa1ed65a30ad76f8, type: 3}
       propertyPath: WordString
-      value: Goodbye
+      value: Cynthia
       objectReference: {fileID: 0}
     - target: {fileID: 4926139614563350905, guid: 1ea0938b80a5c41baa1ed65a30ad76f8, type: 3}
       propertyPath: m_LocalPosition.x
