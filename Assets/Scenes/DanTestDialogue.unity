@@ -602,10 +602,9 @@ MonoBehaviour:
   canvas: {fileID: 581237912}
   _textReadout: {fileID: 1290543189}
   _doneWithStory: 0
-  _letterDelay: 0.1
+  _letterDelay: 0.03
   _dotDelay: 0.3
   buttonPrefab: {fileID: 1612920471577896334, guid: 83c539d3115cc4de7b9320ba9c1a8268, type: 3}
-  _wordReadoutDelay: 0
 --- !u!114 &1196551735
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,20 +26,20 @@ public class InkReader : UsesInput
 
     [SerializeField] private float _letterDelay;
 
-    private InputAction _proceed;
+    private SmartButton _proceed;
 
     [SerializeField] private float _dotDelay;
     [SerializeField] private Button buttonPrefab;
     private List<Button> _buttons = new();
 
     private string _lastSelectedWord;
-    [SerializeField] private float _wordReadoutDelay;
 
 
     protected override void Awake()
     {
+        _proceed = new SmartButton(_input.Player.ProceedDialogue);
+        _smartButtonInputs.Add(_proceed);
         base.Awake();
-        _proceed = _input.Player.Next;
         // ClearView();
         // StartStory();
     }
@@ -69,33 +69,33 @@ public class InkReader : UsesInput
     // Continues over all the lines of text, then displays all the choices. If there are no choices, the story is finished!
     IEnumerator PlayStory()
     {
-        while (!_doneWithStory)
+        // Remove all the UI on screen
+        //ClearView();
+        
+        // Read all the content until we can't continue any more
+        while (_story.canContinue)
         {
-            // Remove all the UI on screen
+            yield return null;
             ClearView();
-            
-            // Read all the content until we can't continue any more
-            while (_story.canContinue)
-            {
-                // Continue gets the next line of the story
-                string text = _story.Continue();
-                // This removes any white space from the text.
-                text = text.Trim();
-                // Display the text on screen!
-                yield return ReadoutLine(text);
+            // Continue gets the next line of the story
+            string text = _story.Continue();
+            // This removes any white space from the text.
+            text = text.Trim();
+            // Display the text on screen!
+            yield return ReadoutLine(text);
 
-                if (_story.canContinue)
-                {
-                    yield return ShowDots();
-                }
+            if (_story.canContinue)
+            {
+                yield return ShowDots();
             }
-            
-            BroadcastFinished();
         }
+        
+        BroadcastFinished();
     }
 
     private void BroadcastFinished()
     {
+        Debug.Log("Finished it");
         OnDoneReadout.Invoke();
     }
 
@@ -107,13 +107,15 @@ public class InkReader : UsesInput
         while (i < letters.Length)
         {
             //Check if user is trying to skip forward
-            if (_proceed.ReadValue<bool>())
+            if (_proceed.Value())
             {
+                Debug.Log("Breaking rn");
                 break;
             }
             
             //Maybe add anim here
             _textReadout.text += letters[i];
+            i++;
             yield return new WaitForSeconds(_letterDelay);
         }
         
@@ -143,7 +145,7 @@ public class InkReader : UsesInput
         //Wait for proceed input
         while (true)
         {
-            if (_proceed.ReadValue<bool>())
+            if (_proceed.Value())
             {
                 break;
             }

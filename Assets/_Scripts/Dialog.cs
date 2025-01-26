@@ -19,15 +19,15 @@ public class Dialog : MonoBehaviour
     private List<Word> _failedAttemptWordList = new List<Word>();
     private Story _currentStory = null;
 
-    // private void OnEnable()
-    // {
-    //     _inkReader.OnDoneReadout.AddListener(RefreshDialogueWordUIGrid);
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     _inkReader.OnDoneReadout.RemoveListener(RefreshDialogueWordUIGrid);
-    // }
+    private void OnEnable()
+    {
+        _inkReader.OnDoneReadout.AddListener(RefreshDialogueWordUIGrid);
+    }
+    
+    private void OnDisable()
+    {
+        _inkReader.OnDoneReadout.RemoveListener(RefreshDialogueWordUIGrid);
+    }
 
     public void StartDialogue(Inventory playerInventory, TextAsset ink)
     {
@@ -35,7 +35,7 @@ public class Dialog : MonoBehaviour
         _playerInventory = playerInventory;
         _currentStory = new Story(ink.text);
 
-        //_inkReader.Setup(_currentStory);
+        _inkReader.Setup(_currentStory);
     }
 
     private void AddWordToDialogueWordUI(Word word)
