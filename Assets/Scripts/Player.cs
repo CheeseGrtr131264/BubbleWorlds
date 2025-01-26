@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private LightDetector _lightDetector;
     [SerializeField] private Inventory _inventory;
+    [SerializeField] private UnityEngine.Rendering.Universal.Light2D _playerLightSource;
 
     private void Start()
     {
