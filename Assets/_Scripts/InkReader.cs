@@ -3,13 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DG.Tweening;
 using Ink.Runtime;
-using Ink.UnityIntegration;
 using TMPro;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 

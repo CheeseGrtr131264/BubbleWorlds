@@ -1,6 +1,5 @@
 using System;
 using Ink.Runtime;
-using Ink.UnityIntegration;
 using UnityEngine;
 
 public class NPC : MonoBehaviour, IInteractable

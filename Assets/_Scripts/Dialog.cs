@@ -2,11 +2,6 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Ink.Runtime;
-using Ink.UnityIntegration;
-using TMPro;
-using UnityCommunity.UnitySingleton;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Dialog : UsesInput
