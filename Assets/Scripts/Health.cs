@@ -4,6 +4,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public event EventHandler OnDied;
+    public event EventHandler <Health>OnHealthChanged;
 
     [SerializeField] private float _maxHealth = 20.0f;
     [SerializeField] private float _healthDecay = 1.0f;
@@ -27,9 +28,18 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void IncreaseMaxHealth(float amount)
+    {
+        float beforeHealthPercentage = _health / _maxHealth;
+        _maxHealth += amount;
+        _health = _health + 1 * beforeHealthPercentage;
+        OnHealthChanged?.Invoke(this, this);
+    }
+
     private void TakeDamage()
     {
         _health -= _healthDecay * Time.deltaTime;
+        OnHealthChanged?.Invoke(this, this);
         if (_health <= 0.0f)
         {
             OnDied?.Invoke(this, EventArgs.Empty);
@@ -43,5 +53,6 @@ public class Health : MonoBehaviour
         {
             _health = _maxHealth;
         }
+        OnHealthChanged?.Invoke(this, this);
     }
 }
