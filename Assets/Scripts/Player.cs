@@ -19,9 +19,17 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out IInteractable interactable))
+        try
         {
-            interactable.Interact(_inventory);
+            var interactables = collision.gameObject.GetComponents<IInteractable>();
+            foreach(var interactable in interactables)
+            {
+                interactable.Interact(_inventory);
+            }
+        }
+        catch
+        {
+            Debug.Log("NOOOOOOOO");
         }
     }
 }

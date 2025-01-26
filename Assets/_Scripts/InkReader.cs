@@ -91,6 +91,7 @@ public class InkReader : UsesInput
     // Creates a new Story object with the compiled story which we can then play!
     private void StartStory()
     {
+        _story.ResetState();
         ClearView();
         if (OnCreateStory != null) OnCreateStory(_story);
         

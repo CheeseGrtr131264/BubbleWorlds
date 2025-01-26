@@ -30,9 +30,9 @@ public class Candle : MonoBehaviour, IInteractable
             _lightSourceLight2D.enabled = true;
         }
 
-        if (_npc.gameObject.TryGetComponent<IInteractable>(out IInteractable interactable))
-        {
-            interactable.Interact(playerInventory);
-        }
+        // if (_npc.gameObject.TryGetComponent<IInteractable>(out IInteractable interactable))
+        // {
+        //     interactable.Interact(playerInventory);
+        // }
     }
 }
