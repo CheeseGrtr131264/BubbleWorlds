@@ -42,8 +42,8 @@ public class DialogueHandler : MonoBehaviour
     private void AddWordToDialogueWordUI(Word word)
     {
         GameObject wordUIGameObject = Instantiate(_wordUIPrefab, _dialogueWordUIGrid.transform);
-        TMP_Text wordUIText = wordUIGameObject.GetComponent<WordUI>().TextMeshPro;
-        wordUIText.text = word.WordString;
+        WordUI wordUIText = wordUIGameObject.GetComponent<WordUI>();
+        wordUIText.Text = word.WordString;
 
         if (_dialogueDictionary.ContainsKey(word.WordString) == true)
         {

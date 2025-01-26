@@ -4,7 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Ink.Runtime;
+using Ink.UnityIntegration;
 using TMPro;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -12,9 +14,8 @@ using UnityEngine.UI;
 public class InkReader : UsesInput
 {
     public static event Action<Story> OnCreateStory;
-
-    [SerializeField] private TextAsset inkJSONAsset = null;
-    public Story story;
+    public UnityEvent OnDoneReadout;
+    public Story _story;
 
     [SerializeField] private Canvas canvas = null;
 
@@ -35,19 +36,31 @@ public class InkReader : UsesInput
     [SerializeField] private float _wordReadoutDelay;
 
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _proceed = _input.Player.Next;
-        ClearView();
+        // ClearView();
+        // StartStory();
+    }
+    
+    public void Setup(Story story)
+    {
+        _story = story;
         StartStory();
     }
 
     // Creates a new Story object with the compiled story which we can then play!
-    void StartStory()
+    private void StartStory()
     {
-        story = new Story(inkJSONAsset.text);
-        if (OnCreateStory != null) OnCreateStory(story);
+        ClearView();
+        if (OnCreateStory != null) OnCreateStory(_story);
         
+        StartCoroutine(PlayStory());
+    }
+
+    public void ContinueStory()
+    {
         StartCoroutine(PlayStory());
     }
 
@@ -62,45 +75,28 @@ public class InkReader : UsesInput
             ClearView();
             
             // Read all the content until we can't continue any more
-            while (story.canContinue)
+            while (_story.canContinue)
             {
                 // Continue gets the next line of the story
-                string text = story.Continue();
+                string text = _story.Continue();
                 // This removes any white space from the text.
                 text = text.Trim();
                 // Display the text on screen!
                 yield return ReadoutLine(text);
 
-                if (story.canContinue)
+                if (_story.canContinue)
                 {
                     yield return ShowDots();
                 }
             }
             
-            yield return ReadoutWords();
-            Choice selectedChoice = ParseWordChoice(_lastSelectedWord);
-            OnClickChoiceButton(selectedChoice);
+            BroadcastFinished();
         }
-        
-        
     }
 
-    private Choice ParseWordChoice(string wordToTry)
+    private void BroadcastFinished()
     {
-        throw new NotImplementedException();
-    }
-
-    private IEnumerator ReadoutWords()
-    {
-        _lastSelectedWord = "";
-        while (_lastSelectedWord == "")
-        {
-            while (_lastSelectedWord == "")
-            {
-                yield return new WaitForSeconds(_wordReadoutDelay);
-            }
-                
-        }
+        OnDoneReadout.Invoke();
     }
 
     private IEnumerator ReadoutLine(string text)
@@ -125,6 +121,9 @@ public class InkReader : UsesInput
         {
             _textReadout.text += letters[remainingLetters];
         }
+            
+        //Add newline character
+        _textReadout.text += "\n";
     }
 
     private IEnumerator ShowDots()
@@ -156,13 +155,7 @@ public class InkReader : UsesInput
 
     // When we click the choice button, tell the story to choose that choice!
     void OnClickChoiceButton (Choice choice) {
-        story.ChooseChoiceIndex (choice.index);
-    }
-
-    // Creates a textbox showing the the line of text
-    void AddText(string text)
-    {
-        _textReadout.text += text + "\n";
+        _story.ChooseChoiceIndex (choice.index);
     }
 
     // Creates a button showing the choice text
@@ -189,10 +182,10 @@ public class InkReader : UsesInput
     void ClearView()
     {
         _textReadout.text = "";
-        foreach (var button in _buttons)
-        {
-            Destroy(button.gameObject);
-        }
-        _buttons.Clear();
+        // foreach (var button in _buttons)
+        // {
+        //     Destroy(button.gameObject);
+        // }
+        // _buttons.Clear();
     }
 }
