@@ -12,17 +12,17 @@ public class UsesInput : MonoBehaviour
         _input = new InputMap();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         _input.Enable();
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         _input.Disable();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         foreach (SmartButton ia in _smartButtonInputs)
         {

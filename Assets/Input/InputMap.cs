@@ -53,6 +53,15 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CancelDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""50960547-e077-4479-b72e-09d2fa97e308"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -253,6 +262,17 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""action"": ""ProceedDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12098fcc-e1ca-4728-8eee-4b1e4a71020b"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CancelDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -282,7 +302,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""15cef263-9014-4fd5-94d9-4e4a6234a6ef"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -841,6 +861,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_ProceedDialogue = m_Player.FindAction("ProceedDialogue", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_CancelDialogue = m_Player.FindAction("CancelDialogue", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -923,6 +944,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_ProceedDialogue;
     private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_CancelDialogue;
     public struct PlayerActions
     {
         private @InputMap m_Wrapper;
@@ -930,6 +952,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @ProceedDialogue => m_Wrapper.m_Player_ProceedDialogue;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @CancelDialogue => m_Wrapper.m_Player_CancelDialogue;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -948,6 +971,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @CancelDialogue.started += instance.OnCancelDialogue;
+            @CancelDialogue.performed += instance.OnCancelDialogue;
+            @CancelDialogue.canceled += instance.OnCancelDialogue;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -961,6 +987,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @CancelDialogue.started -= instance.OnCancelDialogue;
+            @CancelDialogue.performed -= instance.OnCancelDialogue;
+            @CancelDialogue.canceled -= instance.OnCancelDialogue;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1146,6 +1175,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnProceedDialogue(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnCancelDialogue(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -11,9 +11,18 @@ public class PlayerController : UsesInput
 
     protected override void Awake()
     {
+        base.Awake();
         _move = _input.Player.Move;
         _rb = GetComponent<Rigidbody2D>();
     }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        _rb.linearVelocity = Vector2.zero;
+    }
+    
+    
 
     private void FixedUpdate()
     {

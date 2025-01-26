@@ -270,4 +270,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8c9fb2ecde44291b93151739e1d1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextMeshPro: {fileID: 1865694383656650226}
+  _text: {fileID: 1865694383656650226}
+  _button: {fileID: 1612920471577896334}
