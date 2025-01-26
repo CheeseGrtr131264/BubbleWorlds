@@ -7,11 +7,16 @@ public class Candle : MonoBehaviour, IInteractable
     [SerializeField] private SpriteRenderer _npcSpriteRenderer;
     [SerializeField] private SpriteRenderer _lightSourceSpriteRenderer;
     [SerializeField] private UnityEngine.Rendering.Universal.Light2D _lightSourceLight2D;
+    [SerializeField] private GameObject _lightSource;
 
     public event Action<IInteractable> FinishedInteracting;
 
     void IInteractable.Interact(Inventory playerInventory)
     {
+        if (_lightSource)
+        {
+            _lightSource.SetActive(true);
+        }
         if (_npcSpriteRenderer)
         {
             _npcSpriteRenderer.enabled = true;

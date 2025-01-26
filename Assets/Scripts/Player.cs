@@ -7,15 +7,17 @@ public class Player : MonoBehaviour
     [SerializeField] private LightDetector _lightDetector;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private UnityEngine.Rendering.Universal.Light2D _playerLightSource;
+    [SerializeField] private PlayerLightController _playerLightController;
 
     private void Start()
     {
         _health.OnDied += _playerController.Health_OnDied;
         _lightDetector.OnLightChecked += _health.LightDetector_OnLightChecked;
         _lightDetector.OnLightSourceReached += _playerController.LightDetector_OnLightSourceReached;
+        _health.OnHealthChanged += _playerLightController.Health_OnHealthChanged;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out IInteractable interactable))
         {

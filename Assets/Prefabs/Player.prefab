@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 5219100928098506624}
   - component: {fileID: 6389289368498972863}
   - component: {fileID: 1117136602233003701}
+  - component: {fileID: 569229741420020583}
   - component: {fileID: 4869806437548621857}
   - component: {fileID: 2846423555101366587}
   - component: {fileID: 8932948030399547355}
@@ -196,6 +197,8 @@ MonoBehaviour:
   _playerController: {fileID: 5219100928098506624}
   _lightDetector: {fileID: 1117136602233003701}
   _inventory: {fileID: 5379290635873510549}
+  _playerLightSource: {fileID: 5251866302661737346}
+  _playerLightController: {fileID: 569229741420020583}
 --- !u!114 &5219100928098506624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +244,19 @@ MonoBehaviour:
   _lightSourceLayerMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &569229741420020583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770155739585672192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37e327e63bf245db9293dff34453cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerLightSource: {fileID: 5251866302661737346}
 --- !u!212 &4869806437548621857
 SpriteRenderer:
   m_ObjectHideFlags: 0
