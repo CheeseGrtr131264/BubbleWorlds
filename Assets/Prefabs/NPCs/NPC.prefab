@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1646467fb58e484287567c44b6f15c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inkFile: {fileID: 4900000, guid: f552851e3951d55458c4d80bcdeff40a, type: 3}
+  _inkFile: {fileID: 4900000, guid: 75d7a2e684e9c8e4bbae16b830e1ae51, type: 3}
   _hasRunDialogue: 0
 --- !u!58 &4488321860397144033
 CircleCollider2D:
@@ -78,12 +78,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!212 &1629626653173802572
 SpriteRenderer:
   m_ObjectHideFlags: 0
