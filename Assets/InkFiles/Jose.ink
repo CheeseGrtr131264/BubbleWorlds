@@ -103,7 +103,7 @@ She's a kind soul. Needs a little nudge now and then.
 
 ==José==
 ...Hmph. 
-{José == 1} ~ x = x + scoreC
+~UpdateScore(José == 1, scoreC)
 ->->
 
 ==Bubble==
@@ -136,7 +136,7 @@ Beacons of [hope], that's what she calls them.
 
 ==Forgiveness==
 . . . It was never my fault. I can see that now. ...I can feel her [kindness]...thank you.
-{Forgiveness == 1} ~ x = x + scoreD
+~UpdateScore(Forgiveness == 1, scoreD)
 ->->
 
 ==Hope==
@@ -149,7 +149,7 @@ I can feel her staring at me-! Ah, it's just the wind. Or is it...?
 
 ==Cookies==
 I grew up smelling them.
-{Cookies == 1} ~ x = x + scoreA
+~UpdateScore(Cookies == 1, scoreA)
 ->->
 
 ==Kindness==
@@ -166,3 +166,8 @@ Not sure why I thought of that.
 ==FinalDialogue==
     SomethingLol
     ->DONE
+    
+=== function UpdateScore(a,  b) ===
+{ a:
+    ~ x = x + b
+}

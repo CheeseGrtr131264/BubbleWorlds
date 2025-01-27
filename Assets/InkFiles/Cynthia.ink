@@ -145,7 +145,7 @@ She's been here longer than anybody. I wish I knew more about her.
 
 ==Cookies==
 That sounds good right about now.
-{Cookies == 1} ~ x = x + scoreA
+~UpdateScore(Cookies == 1, scoreA)
 ->->
 
 ==Fish==

@@ -80,7 +80,6 @@ Ah yes, winter is indeed coming.
 
 ==Stars==
 You did always like the stars, didn't you? 
-{Stars == 1} ~ x = x + scoreB
 ~UpdateScore(Stars == 1, scoreB)
 ->->
 

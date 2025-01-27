@@ -111,7 +111,7 @@ He's scary.
 
 ==Bubble==
 Yeah, bubbles!
-{Bubble == 1} ~ x = x + scoreA
+~UpdateScore(Bubble == 1, scoreA)
 ->->
 
 ==Sick==
