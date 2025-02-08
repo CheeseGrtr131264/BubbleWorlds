@@ -617,6 +617,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 123677397809262553, guid: a6958025a43464ffe954615e9ba525b1, type: 3}
+      propertyPath: _moveTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123677397809262553, guid: a6958025a43464ffe954615e9ba525b1, type: 3}
+      propertyPath: _moveAwayDistance.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 832196893287325082, guid: a6958025a43464ffe954615e9ba525b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1348,18 +1356,6 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1971990507}
-    - target: {fileID: 869819000906982455, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
-      propertyPath: _newWordDelay
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 869819000906982455, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
-      propertyPath: _wordButtonPrefab
-      value: 
-      objectReference: {fileID: 4176186584738095530, guid: 92e1d8725281aad4eabd6264021af955, type: 3}
-    - target: {fileID: 869819000906982455, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
-      propertyPath: _buttonSpawnCanvas
-      value: 
-      objectReference: {fileID: 639771829}
     - target: {fileID: 1375587811912809152, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -1430,11 +1426,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977428554808019417, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3.1799927
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5977428554808019417, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.6799927
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5977428554808019417, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -149155,10 +149151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

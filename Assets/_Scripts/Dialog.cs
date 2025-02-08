@@ -11,9 +11,7 @@ public class Dialog : UsesInput
     [SerializeField] private InventoryManager _inventoryManager;
     [SerializeField] private Image _image;
 
-    private Dictionary<string, List<string>> _dialogueDictionary = new Dictionary<string, List<string>>();
     private Inventory _playerInventory;
-    private List<Word> _failedAttemptWordList = new List<Word>();
 
     public Action OnDialogDone;
     

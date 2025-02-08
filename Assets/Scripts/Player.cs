@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,8 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Inventory _inventory;
     [SerializeField] private UnityEngine.Rendering.Universal.Light2D _playerLightSource;
     [SerializeField] private PlayerLightController _playerLightController;
-    // [SerializeField] private float _moveTime;
-    // [SerializeField] private Vector2 _moveAwayDistance;
+    [SerializeField] private float _moveTime;
+    [SerializeField] private Vector2 _moveAwayDistance;
 
     private void Start()
     {
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
             foreach(var interactable in interactables)
             {
                 interactable.Interact(_inventory);
-                // StartCoroutine(MoveToInteractable(other.gameObject, interactable));
+                StartCoroutine(MoveToInteractable(collision.gameObject, interactable));
             }
         }
         catch
@@ -37,31 +38,31 @@ public class Player : MonoBehaviour
         }
     }
     
-    // IEnumerator MoveToInteractable(GameObject obj, IInteractable interactable)
-    // {
-    //     _playerController.enabled = false;
-    //     
-    //     GetComponent<Rigidbody2D>().DOMove(obj.transform.position, _moveTime);
-    //     yield return new WaitForSeconds(_moveTime);
-    //     
-    //     interactable.Interact(_inventory);
-    //     
-    //     interactable.FinishedInteracting += StopInteracting;
-    // }
-    //
-    // private void StopInteracting(IInteractable interactable)
-    // {
-    //     interactable.FinishedInteracting -= StopInteracting;
-    //     StartCoroutine(MoveAwayFromInteractable());
-    // }
-    //
-    // IEnumerator MoveAwayFromInteractable()
-    // {
-    //     
-    //     Vector2 startPos = transform.position;
-    //     GetComponent<Rigidbody2D>().DOMove(startPos + _moveAwayDistance, _moveTime);
-    //     yield return new WaitForSeconds(_moveTime);
-    //     
-    //     _playerController.enabled = true;
-    // }
+    IEnumerator MoveToInteractable(GameObject obj, IInteractable interactable)
+    {
+        _playerController.enabled = false;
+        
+        GetComponent<Rigidbody2D>().DOMove(obj.transform.position, _moveTime);
+        yield return new WaitForSeconds(_moveTime);
+        
+        interactable.Interact(_inventory);
+        interactable.FinishedInteracting += StopInteracting;
+        
+    }
+    
+    private void StopInteracting(IInteractable interactable)
+    {
+        interactable.FinishedInteracting -= StopInteracting;
+        StartCoroutine(MoveAwayFromInteractable());
+    }
+    
+    IEnumerator MoveAwayFromInteractable()
+    {
+        
+        Vector2 startPos = transform.position;
+        GetComponent<Rigidbody2D>().DOMove(startPos + _moveAwayDistance, _moveTime);
+        yield return new WaitForSeconds(_moveTime);
+        
+        _playerController.enabled = true;
+    }
 }

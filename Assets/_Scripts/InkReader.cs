@@ -7,6 +7,7 @@ using DG.Tweening;
 using Ink.Runtime;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -34,10 +35,8 @@ public class InkReader : UsesInput
 
     private string _lastSelectedWord;
     private Coroutine _storyCoroutine;
-    private RectTransform _rect;
+    [FormerlySerializedAs("_rect")] [SerializeField] private RectTransform _dialogueRect;
     
-    [SerializeField] private float _shownY;
-    [SerializeField] private float _hiddenY;
     [SerializeField] private float _lerpTime;
     [SerializeField] private WordButton _wordButtonPrefab;
 
@@ -50,10 +49,11 @@ public class InkReader : UsesInput
 
     protected override void Awake()
     {
-        _rect = GetComponent<RectTransform>();
+        _dialogueRect = GetComponent<RectTransform>();
         base.Awake();
         _proceed = new SmartButton(_input.Player.ProceedDialogue);
         _smartButtonInputs.Add(_proceed);
+        HideReadout();
         // ClearView();
         // StartStory();
     }
@@ -68,11 +68,13 @@ public class InkReader : UsesInput
 
     public void HideReadout()
     {
-        _rect.DOAnchorPosY(_hiddenY, _lerpTime);
+        _dialogueRect.DOPivotY(1, _lerpTime);
+        //DOTween.GO
     }
     public void ShowReadout()
     {
-        _rect.DOAnchorPosY(_shownY, _lerpTime);
+        _dialogueRect.DOPivotY(0, _lerpTime);
+        _dialogueRect.DOAnchorPosY(0, _lerpTime);
     }
 
     public void StopStory()

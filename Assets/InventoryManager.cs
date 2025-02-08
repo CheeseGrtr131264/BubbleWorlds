@@ -23,6 +23,7 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
+        CloseInventory();
     }
 
     public void Setup(Inventory playerInventory, Story currentStory)

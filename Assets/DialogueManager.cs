@@ -22,7 +22,7 @@ public class DialogueManager : MonoSingleton<DialogueManager>
         _dialog.LeaveDialogue();
     }
 
-    public void AddListener(Action action)
+    public void AddDialogueDoneListener(Action action)
     {
         _dialog.OnDialogDone += action;
     } 

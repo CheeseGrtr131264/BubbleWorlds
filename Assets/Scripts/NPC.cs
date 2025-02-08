@@ -20,12 +20,13 @@ public class NPC : MonoBehaviour, IInteractable
     void IInteractable.Interact(Inventory playerInventory)
     {
         DialogueManager.Instance.StartDialogue(playerInventory, _myStory, _characterSprite);
-        DialogueManager.Instance.AddListener(DialogueDone);
+        DialogueManager.Instance.AddDialogueDoneListener(DialogueDone);
         _hasRunDialogue = true;
     }
 
     private void DialogueDone()
     {
+        Debug.Log("Dialogue done");
         DialogueManager.Instance.RemoveListener(DialogueDone);
         FinishedInteracting?.Invoke(this);
     }
