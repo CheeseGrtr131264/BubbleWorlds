@@ -199,6 +199,8 @@ MonoBehaviour:
   _inventory: {fileID: 5379290635873510549}
   _playerLightSource: {fileID: 5251866302661737346}
   _playerLightController: {fileID: 569229741420020583}
+  _moveTime: 1
+  _moveAwayDistance: {x: -1, y: 0}
 --- !u!114 &5219100928098506624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +437,46 @@ PrefabInstance:
       propertyPath: 'WordList.Array.data[0]'
       value: 
       objectReference: {fileID: 5209144927591181511, guid: 5170e7d262c2145359ec27098c4e44c7, type: 3}
+    - target: {fileID: 7573094662277260740, guid: d777335bfe5f2425e8034514f66e47b1, type: 3}
+      propertyPath: DebugWordList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573094662277260740, guid: d777335bfe5f2425e8034514f66e47b1, type: 3}
+      propertyPath: 'DebugWordList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5059703836519128600, guid: 58e5bd44a23915e489b253237b73daaa, type: 3}
+    - target: {fileID: 7573094662277260740, guid: d777335bfe5f2425e8034514f66e47b1, type: 3}
+      propertyPath: OnWordAdded.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573094662277260740, guid: d777335bfe5f2425e8034514f66e47b1, type: 3}
+      propertyPath: OnWordAdded.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573094662277260740, guid: d777335bfe5f2425e8034514f66e47b1, type: 3}
+      propertyPath: OnWordAdded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6389289368498972863}
+    - target: {fileID: 7573094662277260740, guid: d777335bfe5f2425e8034514f66e47b1, type: 3}
+      propertyPath: OnWordAdded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573094662277260740, guid: d777335bfe5f2425e8034514f66e47b1, type: 3}
+      propertyPath: OnWordAdded.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseMaxHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573094662277260740, guid: d777335bfe5f2425e8034514f66e47b1, type: 3}
+      propertyPath: OnWordAdded.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Health, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573094662277260740, guid: d777335bfe5f2425e8034514f66e47b1, type: 3}
+      propertyPath: OnWordAdded.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573094662277260740, guid: d777335bfe5f2425e8034514f66e47b1, type: 3}
+      propertyPath: OnWordAdded.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

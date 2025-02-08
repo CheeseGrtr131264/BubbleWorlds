@@ -4,8 +4,6 @@ using UnityEngine;
 public class Candle : MonoBehaviour, IInteractable
 {
     [SerializeField] private NPC _npc;
-    [SerializeField] private SpriteRenderer _npcSpriteRenderer;
-    [SerializeField] private SpriteRenderer _lightSourceSpriteRenderer;
     [SerializeField] private UnityEngine.Rendering.Universal.Light2D _lightSourceLight2D;
     [SerializeField] private GameObject _lightSource;
 
@@ -17,22 +15,27 @@ public class Candle : MonoBehaviour, IInteractable
         {
             _lightSource.SetActive(true);
         }
-        if (_npcSpriteRenderer)
+
+        var npcSpriteRenderer = _npc.GetComponent<SpriteRenderer>();
+        if (npcSpriteRenderer)
         {
-            _npcSpriteRenderer.enabled = true;
+            npcSpriteRenderer.enabled = true;
         }
-        if (_lightSourceSpriteRenderer)
-        {
-            _lightSourceSpriteRenderer.enabled = true;
-        }
+
         if (_lightSourceLight2D)
         {
             _lightSourceLight2D.enabled = true;
+            
+            var _lightSourceSpriteRenderer = _lightSourceLight2D.GetComponent<SpriteRenderer>();
+            if (_lightSourceSpriteRenderer)
+            {
+                _lightSourceSpriteRenderer.enabled = true;
+            }
         }
 
-        // if (_npc.gameObject.TryGetComponent<IInteractable>(out IInteractable interactable))
-        // {
-        //     interactable.Interact(playerInventory);
-        // }
+        if (_npc.TryGetComponent<IInteractable>(out IInteractable interactable))
+        {
+            interactable.Interact(playerInventory);
+        }
     }
 }

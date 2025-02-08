@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
     {
         foreach (var npc in FindObjectsByType<NPC>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
+            if (npc.MyStory == null) break;
             _npcData[npc.MyStory] = new List<WordInfo>();
         }
         
