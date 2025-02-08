@@ -23,18 +23,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        try
+        if (collision.TryGetComponent<IInteractable>(out IInteractable interactable))
         {
-            var interactables = collision.gameObject.GetComponents<IInteractable>();
-            foreach(var interactable in interactables)
-            {
-                interactable.Interact(_inventory);
-                StartCoroutine(MoveToInteractable(collision.gameObject, interactable));
-            }
-        }
-        catch
-        {
-            Debug.Log("NOOOOOOOO");
+            StartCoroutine(MoveToInteractable(collision.gameObject, interactable));
         }
     }
     
@@ -42,7 +33,9 @@ public class Player : MonoBehaviour
     {
         _playerController.enabled = false;
         
-        GetComponent<Rigidbody2D>().DOMove(obj.transform.position, _moveTime);
+        Vector3 destPos = obj.transform.position + new Vector3(0, 0.93499f, 0);
+        
+        GetComponent<Rigidbody2D>().DOMove(destPos, _moveTime);
         yield return new WaitForSeconds(_moveTime);
         
         interactable.Interact(_inventory);
@@ -53,7 +46,8 @@ public class Player : MonoBehaviour
     private void StopInteracting(IInteractable interactable)
     {
         interactable.FinishedInteracting -= StopInteracting;
-        StartCoroutine(MoveAwayFromInteractable());
+        Debug.Log("Running away");
+        //StartCoroutine(MoveAwayFromInteractable());
     }
     
     IEnumerator MoveAwayFromInteractable()
