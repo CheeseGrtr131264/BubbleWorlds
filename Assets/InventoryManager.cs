@@ -23,7 +23,7 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
-        CloseInventory();
+        CloseInventory(0f);
     }
 
     public void Setup(Inventory playerInventory, Story currentStory)
@@ -38,9 +38,13 @@ public class InventoryManager : MonoBehaviour
         
     }
 
-    public void CloseInventory()
+    public void CloseInventory(float lerpTime = -1f)
     {
-        _rect.DOAnchorPosY(_hiddenY, _lerpTime);
+        if (lerpTime == -1f)
+        {
+            lerpTime = _lerpTime;
+        }
+        _rect.DOAnchorPosY(_hiddenY, lerpTime);
     }
     
     public void AddWordToDialogueWordUI(Word word)

@@ -22,9 +22,6 @@ public class Dialog : UsesInput
         base.Awake();
         _cancel = new SmartButton(_input.Player.CancelDialogue);
         _smartButtonInputs.Add(_cancel);
-
-        _inventoryManager.CloseInventory();
-        _inkReader.HideReadout();
     }
 
     protected override void OnEnable()
@@ -51,7 +48,6 @@ public class Dialog : UsesInput
         {
             Debug.Log("Canceling rn");
             LeaveDialogue();
-            OnDialogDone?.Invoke();
         }
     }
     
@@ -90,5 +86,7 @@ public class Dialog : UsesInput
         _inventoryManager.CloseInventory();
         _inkReader.StopStory();
         _inkReader.HideReadout();
+        
+        OnDialogDone?.Invoke();
     }
 }

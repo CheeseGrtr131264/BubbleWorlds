@@ -35,7 +35,10 @@ public class Player : MonoBehaviour
         
         Vector3 destPos = obj.transform.position + new Vector3(0, 0.93499f, 0);
         
-        GetComponent<Rigidbody2D>().DOMove(destPos, _moveTime);
+        var rb = GetComponent<Rigidbody2D>();
+        rb.DOMove(destPos, _moveTime);
+        rb.linearVelocity = Vector2.zero;
+        
         yield return new WaitForSeconds(_moveTime);
         
         interactable.Interact(_inventory);
@@ -46,13 +49,11 @@ public class Player : MonoBehaviour
     private void StopInteracting(IInteractable interactable)
     {
         interactable.FinishedInteracting -= StopInteracting;
-        Debug.Log("Running away");
-        //StartCoroutine(MoveAwayFromInteractable());
+        StartCoroutine(MoveAwayFromInteractable());
     }
     
     IEnumerator MoveAwayFromInteractable()
     {
-        
         Vector2 startPos = transform.position;
         GetComponent<Rigidbody2D>().DOMove(startPos + _moveAwayDistance, _moveTime);
         yield return new WaitForSeconds(_moveTime);

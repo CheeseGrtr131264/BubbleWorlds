@@ -326,6 +326,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 117126772}
     m_Modifications:
     - target: {fileID: 5772366255044698110, guid: ffa00ff03c2dd463e80cd2a899b535fa, type: 3}
+      propertyPath: _walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772366255044698110, guid: ffa00ff03c2dd463e80cd2a899b535fa, type: 3}
       propertyPath: _characterSprite
       value: 
       objectReference: {fileID: 2104667651, guid: 3ec8f3cf41e6eb241b5cbca7092a7d67, type: 3}
@@ -411,6 +415,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1301519623}
     m_Modifications:
+    - target: {fileID: 123677397809262553, guid: a6958025a43464ffe954615e9ba525b1, type: 3}
+      propertyPath: _moveAwayDistance.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123677397809262553, guid: a6958025a43464ffe954615e9ba525b1, type: 3}
+      propertyPath: _moveAwayDistance.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 1371366412805129020, guid: a6958025a43464ffe954615e9ba525b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.04
@@ -651,13 +663,43 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6650183572711298126, guid: 7f3350f1e688d4ff084d1122722a7753, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 479920231}
   m_SourcePrefab: {fileID: 100100000, guid: 7f3350f1e688d4ff084d1122722a7753, type: 3}
+--- !u!1 &479920225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6650183572711298126, guid: 7f3350f1e688d4ff084d1122722a7753, type: 3}
+  m_PrefabInstance: {fileID: 479920224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &479920230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3065684415102390011, guid: 7f3350f1e688d4ff084d1122722a7753, type: 3}
   m_PrefabInstance: {fileID: 479920224}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &479920231
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479920225}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &527645827
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +874,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: c89ba535a4688ac4b88bfe05c30e790b, type: 2}
     - target: {fileID: 5772366255044698110, guid: c1c3d605164544f369754aeec683931d, type: 3}
+      propertyPath: _walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772366255044698110, guid: c1c3d605164544f369754aeec683931d, type: 3}
       propertyPath: _characterSprite
       value: 
       objectReference: {fileID: -186665967, guid: 3ec8f3cf41e6eb241b5cbca7092a7d67, type: 3}
@@ -920,6 +966,10 @@ PrefabInstance:
       propertyPath: _inkFile
       value: 
       objectReference: {fileID: 4900000, guid: 32dc397f1b15a9040af7c487014442c3, type: 3}
+    - target: {fileID: 1725990145352833867, guid: 08a0159721a33466d9315a0d9257e6e7, type: 3}
+      propertyPath: _walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1725990145352833867, guid: 08a0159721a33466d9315a0d9257e6e7, type: 3}
       propertyPath: _characterSprite
       value: 
@@ -1099,7 +1149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5216185873658757239, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
       propertyPath: m_Name
-      value: Dialogue
+      value: DialogueCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 5977428554808019417, guid: ad465d5841e20b2488a10d976051adb4, type: 3}
       propertyPath: m_Pivot.x
@@ -1369,7 +1419,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1971990508}
-  - {fileID: 1478796470}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &716902058 stripped
@@ -56608,6 +56657,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: deadfff386e09fa498ca18c3075c54cc, type: 2}
     - target: {fileID: 5772366255044698110, guid: 7ab82992f4a5e4837a4b7a9e7348c54f, type: 3}
+      propertyPath: _walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772366255044698110, guid: 7ab82992f4a5e4837a4b7a9e7348c54f, type: 3}
       propertyPath: _characterSprite
       value: 
       objectReference: {fileID: 1525945936, guid: 3ec8f3cf41e6eb241b5cbca7092a7d67, type: 3}
@@ -57123,7 +57176,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 697839917}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1572040995 stripped
 Transform:
@@ -57228,6 +57281,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b2d15a9f42b1a564e9c65974092bd680, type: 2}
+    - target: {fileID: 5772366255044698110, guid: aa0c331e7636945dcb0e3d433f4a163f, type: 3}
+      propertyPath: _walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5772366255044698110, guid: aa0c331e7636945dcb0e3d433f4a163f, type: 3}
       propertyPath: _characterSprite
       value: 
@@ -149034,6 +149091,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5772366255044698110, guid: 462c15f97a45943878eb72faa01735d3, type: 3}
+      propertyPath: _walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772366255044698110, guid: 462c15f97a45943878eb72faa01735d3, type: 3}
       propertyPath: _characterSprite
       value: 
       objectReference: {fileID: 295911177, guid: 3ec8f3cf41e6eb241b5cbca7092a7d67, type: 3}
@@ -149163,6 +149224,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1478796470}
   - {fileID: 697839917}
   - {fileID: 529789130}
   - {fileID: 1301519623}

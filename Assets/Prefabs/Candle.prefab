@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -1960342995491053930}
   - component: {fileID: 9175633919286021268}
   - component: {fileID: 4565543439064421432}
+  - component: {fileID: 2226485820244385799}
   m_Layer: 0
   m_Name: Candle
   m_TagString: Untagged
@@ -79,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4741930550087496029, guid: 6c2b1edeffdfc43f5acabbfcda86cbb0, type: 3}
+  m_Sprite: {fileID: -1444871030, guid: cde34629777a795409bb4c6e606059a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6, y: 10}
+  m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,8 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npc: {fileID: 0}
-  _npcSpriteRenderer: {fileID: 0}
-  _lightSourceSpriteRenderer: {fileID: 2207889915617025689}
   _lightSourceLight2D: {fileID: 3555775465059078170}
   _lightSource: {fileID: 8657762338008102082}
 --- !u!58 &4565543439064421432
@@ -143,6 +142,28 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1
+--- !u!95 &2226485820244385799
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6650183572711298126}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 138ccbff3d31c224eae674e1ba5aad72, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3163157662812728142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -243,11 +264,6 @@ PrefabInstance:
 --- !u!4 &1106433383656082840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2647866366785595094, guid: a85901d0129744ee3887260e0c747b9d, type: 3}
-  m_PrefabInstance: {fileID: 3163157662812728142}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &2207889915617025689 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3837571612966974935, guid: a85901d0129744ee3887260e0c747b9d, type: 3}
   m_PrefabInstance: {fileID: 3163157662812728142}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &3555775465059078170 stripped

@@ -35,7 +35,7 @@ public class InkReader : UsesInput
 
     private string _lastSelectedWord;
     private Coroutine _storyCoroutine;
-    [FormerlySerializedAs("_rect")] [SerializeField] private RectTransform _dialogueRect;
+    [SerializeField] private RectTransform _dialogueRect;
     
     [SerializeField] private float _lerpTime;
     [SerializeField] private WordButton _wordButtonPrefab;
@@ -49,15 +49,14 @@ public class InkReader : UsesInput
 
     protected override void Awake()
     {
-        _dialogueRect = GetComponent<RectTransform>();
         base.Awake();
         _proceed = new SmartButton(_input.Player.ProceedDialogue);
         _smartButtonInputs.Add(_proceed);
-        HideReadout();
+        HideReadout(0);
         // ClearView();
         // StartStory();
     }
-    
+
     public void Setup(Inventory inventory, Story story)
     {
         _story = story;
@@ -66,15 +65,23 @@ public class InkReader : UsesInput
         StartStory();
     }
 
-    public void HideReadout()
+    public void HideReadout(float lerpTime = -1)
     {
-        _dialogueRect.DOPivotY(1, _lerpTime);
-        //DOTween.GO
+        if (lerpTime == -1)
+        {
+            lerpTime = _lerpTime;
+        }
+        _dialogueRect.DOPivotY(0, lerpTime);
+        //_dialogueRect.DOAnchorPosY(0, _lerpTime);
     }
-    public void ShowReadout()
+    public void ShowReadout(float lerpTime = -1)
     {
-        _dialogueRect.DOPivotY(0, _lerpTime);
-        _dialogueRect.DOAnchorPosY(0, _lerpTime);
+        if (lerpTime == -1)
+        {
+            lerpTime = _lerpTime;
+        }
+        _dialogueRect.DOPivotY(1, lerpTime);
+        //_dialogueRect.DOAnchorPosY(0, _lerpTime);
     }
 
     public void StopStory()

@@ -6,20 +6,17 @@ public class Candle : MonoBehaviour, IInteractable
     [SerializeField] private NPC _npc;
     [SerializeField] private UnityEngine.Rendering.Universal.Light2D _lightSourceLight2D;
     [SerializeField] private GameObject _lightSource;
+    private Inventory _lastPlayerInventory;
 
     public event Action<IInteractable> FinishedInteracting;
 
     void IInteractable.Interact(Inventory playerInventory)
     {
+        _lastPlayerInventory = playerInventory;
+        
         if (_lightSource)
         {
             _lightSource.SetActive(true);
-        }
-
-        var npcSpriteRenderer = _npc.GetComponent<SpriteRenderer>();
-        if (npcSpriteRenderer)
-        {
-            npcSpriteRenderer.enabled = true;
         }
 
         if (_lightSourceLight2D)
@@ -35,7 +32,14 @@ public class Candle : MonoBehaviour, IInteractable
 
         if (_npc.TryGetComponent<IInteractable>(out IInteractable interactable))
         {
-            interactable.Interact(playerInventory);
+            interactable.FinishedInteracting += interactableOnFinishedInteracting;
+            interactable.Interact(_lastPlayerInventory);
         }
+    }
+
+    private void interactableOnFinishedInteracting(IInteractable interactable)
+    {
+        _npc.FinishedInteracting -= interactableOnFinishedInteracting;
+        FinishedInteracting.Invoke(interactable);
     }
 }
